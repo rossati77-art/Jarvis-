@@ -1,0 +1,13 @@
+<resources>
+    <style name="Theme.Jarvis" parent="android:Theme.Material.NoActionBar">
+        <item name="android:statusBarColor">@color/jarvis_background_dark</item>
+        <item name="android:windowBackground">@color/jarvis_background_dark</item>
+    </style>
+
+    <style name="Theme.Jarvis.Transparent" parent="Theme.Jarvis">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+</resources>
