@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Jarvis</string>
+    <string name="tile_label">Parla con Claude</string>
+
+    <string name="talk_to_claude">Parla con Claude</string>
+    <string name="listening">Ti ascolto…</string>
+    <string name="thinking">Claude sta pensando…</string>
+    <string name="type_a_message">Scrivi un messaggio</string>
+    <string name="send">Invia</string>
+    <string name="settings">Impostazioni</string>
+    <string name="api_key_label">Chiave API Anthropic</string>
+    <string name="api_key_hint">sk-ant-…</string>
+    <string name="model_label">Modello</string>
+    <string name="save">Salva</string>
+    <string name="api_key_missing">Imposta prima la tua chiave API Anthropic nelle Impostazioni.</string>
+    <string name="mic_permission_needed">Serve il permesso del microfono per parlare con Claude.</string>
+    <string name="error_generic">Qualcosa è andato storto: %1$s</string>
+    <string name="add_tile_hint">Suggerimento: aggiungi la tile "Parla con Claude" alle Impostazioni Rapide del telefono (tira giù la tendina, tocca la matita/modifica e trascina la tile Jarvis) per parlare con Claude da qualunque schermata con un solo tocco.</string>
+</resources>

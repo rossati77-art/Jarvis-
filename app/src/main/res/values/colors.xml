@@ -1,0 +1,6 @@
+<resources>
+    <color name="jarvis_primary">#1E88E5</color>
+    <color name="jarvis_background_dark">#0D1117</color>
+    <color name="jarvis_surface_dark">#161B22</color>
+    <color name="jarvis_on_primary">#FFFFFF</color>
+</resources>
