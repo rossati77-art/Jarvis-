@@ -1,10 +1,15 @@
-# Jarvis
+# Jarvis (app Android)
 
 Un assistente personale per Android: il primo pezzo è un **tasto per parlare
 direttamente con Claude**, sia dentro l'app sia da una **tile nelle
 Impostazioni Rapide** del telefono (richiamabile da qualunque schermata con
 un tocco). Il progetto è pensato per crescere con altre automazioni in
 stile "Jarvis".
+
+> Nota: questo repository contiene anche un'altra web app statica
+> ("Gestione dei Flussi di Casa", `index.html` + `sw.js`, pubblicata su
+> GitHub Pages) non collegata a questo progetto Android. Il codice
+> dell'app Jarvis vive tutto sotto `app/`.
 
 ## Cosa fa oggi
 
