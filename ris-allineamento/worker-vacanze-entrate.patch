@@ -1,0 +1,49 @@
+--- a/worker.js	2026-09-29 11:27:30.201805457 +0000
++++ b/worker.js	2026-09-29 11:35:38.627562635 +0000
+@@ -81,7 +81,9 @@
+   tasse: 'Tasse & Tributi', contanti: 'Prelievi Contanti', carta: 'Carta di Credito', revolut: 'Flussi Revolut',
+   interno: 'Movimenti Interni', investimento: 'Investimento', vacanze: 'Vacanze', figli: 'Paghetta & Figli', altro: 'Non Riconosciuta',
+ };
+-const EXPENSE_CATS = ['spesa', 'ristorazione', 'svago', 'abbonamento', 'bolletta', 'casa', 'mutuo', 'finanziamento', 'trasporti', 'salute', 'abbigliamento', 'ecommerce', 'tasse', 'contanti', 'carta', 'vacanze', 'figli'];
++const EXPENSE_CATS = ['spesa', 'ristorazione', 'svago', 'abbonamento', 'bolletta', 'casa', 'mutuo', 'finanziamento', 'trasporti', 'salute', 'abbigliamento', 'ecommerce', 'tasse', 'contanti', 'carta', 'figli'];
++// 'vacanze' = salvadanaio (10% messo da parte, uscita+entrata identiche lo stesso giorno): NON è spesa né entrata, come nell'app.
++const CATEGORIE_NON_FLUSSO = ['vacanze', 'revolut', 'interno', 'investimento'];
+ function isUscitaContabile(m) { return EXPENSE_CATS.includes(m.categoria) && !m.cartaCredito; }
+ function eGiroconto(m) {
+   if (!m) return false;
+@@ -275,16 +277,21 @@
+ }
+ function computeEntrate(incomes, extraEntrate, movements, entrateMovements, period, plRealizzato) {
+   const guadagnoInvestimenti = guadagnoInvestimentiPeriodo(plRealizzato, period);
+-  const sorgente = (entrateMovements && entrateMovements.length > 0) ? entrateMovements : movements;
+-  const movimentiEntrata = sorgente.filter(m => Number(m.importo) > 0 && m.categoria !== 'investimento');
+-  const filtrati = movimentiEntrata.filter(m => inPeriod(m.data, period)).map(m => ({ ...m, tipoEntrata: m.tipoEntrata || classificaEntrata(m.descrizione) }));
++  // Accrediti veri del periodo: prima la cartella Entrate; se per questo mese non ha righe, i Movimenti importati
++  // (prima si cadeva subito sulle entrate fisse dell'anagrafica: 5.450,87 invece degli accrediti reali di settembre).
++  // Fuori: salvadanaio Vacanze, giroconti/interni, investimenti e i movimenti sulla tasca Revolut (spostamenti).
++  const accrediti = (lista) => (lista || []).filter(m => Number(m.importo) > 0 && !CATEGORIE_NON_FLUSSO.includes(m.categoria) && m.conto !== 'revolut' && inPeriod(m.data, period));
++  let filtrati = accrediti(entrateMovements);
++  if (filtrati.length === 0) filtrati = accrediti(movements);
++  filtrati = filtrati.map(m => ({ ...m, tipoEntrata: m.tipoEntrata || classificaEntrata(m.descrizione) }));
+   if (filtrati.length > 0) {
+     const daLavoro = filtrati.reduce((s, m) => s + Number(m.importo), 0);
+-    return { mode: 'movimenti', totale: daLavoro + guadagnoInvestimenti, daLavoro, guadagnoInvestimenti, movimenti: filtrati };
++    // Titoli, dividendi e P/L realizzato stanno in Patrimonio, non in Entrate (nota dell'app): guadagnoInvestimenti resta solo informativo.
++    return { mode: 'movimenti', totale: daLavoro, daLavoro, guadagnoInvestimenti, movimenti: filtrati };
+   }
+   const base = Object.values(incomes || {}).reduce((s, v) => s + (Number(v) || 0), 0) + (extraEntrate || []).reduce((s, e) => s + (Number(e.importo) || 0), 0);
+   const daLavoro = period.mese === null ? base * 12 : base;
+-  return { mode: 'fisse', totale: daLavoro + guadagnoInvestimenti, daLavoro, guadagnoInvestimenti, movimenti: [] };
++  return { mode: 'fisse', totale: daLavoro, daLavoro, guadagnoInvestimenti, movimenti: [] };
+ }
+ 
+ // ---- Fido / Finanziamenti / Cassa / Pensione (identico all'app) ----
+@@ -1255,7 +1262,7 @@
+     const CATEGORIE_NON_SPESA = ['investimento', 'revolut', 'interno'];
+ 
+     const riepilogaPeriodo = (p) => {
+-      let movs = (data.movements || []).filter(m => inPeriod(m.data, p));
++      let movs = (data.movements || []).filter(m => inPeriod(m.data, p) && m.categoria !== 'vacanze');
+       let esclusi = 0, valoreEsclusi = 0;
+       if (args.escludiGiroconti) {
+         const prima = movs;
