@@ -28,6 +28,10 @@ const movements = [
   mov('2026-09-03', 'Rata mutuo', -1249.98, 'mutuo'),
   mov('2026-09-04', 'Addebito carta', -1349.83, 'carta'),
   mov('2026-09-06', 'Utenze', -764.27, 'bolletta'),
+  // non sono entrate: accrediti sulla tasca Revolut ("Pagamento da parte di", 25 €) e ricariche interne
+  mov('2026-09-04', 'Pagamento da parte di', 10, 'altro', { conto: 'revolut' }),
+  mov('2026-09-18', 'Pagamento da parte di', 15, 'altro', { conto: 'revolut' }),
+  mov('2026-09-11', 'Ricarica di Google Pay', 500, 'interno', { conto: 'revolut' }),
   // non sono flussi: giroconto Revolut, titoli
   mov('2026-09-11', 'Giroconto Revolut', -500, 'revolut'),
   mov('2026-09-12', 'Dividendo', 120, 'investimento'),
@@ -35,7 +39,10 @@ const movements = [
   mov('2026-09-20', 'Tap Avis', -324.82, 'trasporti', { cartaCredito: true }),
 ];
 const data = {
-  period: { mese: 9, anno: 2026 }, movements, entrateMovements: [], incomes: {}, extraEntrate: [],
+  period: { mese: 9, anno: 2026 }, movements,
+  // cartella Entrate con righe SOLO di altri mesi: settembre deve comunque usare i Movimenti (non le entrate fisse)
+  entrateMovements: [{ id: 'e1', data: '2026-08-31', descrizione: 'Stipendio agosto', importo: 3372, categoria: 'altro', conto: 'fineco' }],
+  incomes: { massimiliano: 3320.87, susj: 1300, inps: 430, mamma: 400 }, extraEntrate: [],
   plRealizzato: [{ data: '2026-09-09', fonte: 'fineco', pl: 3859.99 }], // plusvalenze: Patrimonio, non Entrate
 };
 const r2 = (x) => Math.round(x * 100) / 100;
