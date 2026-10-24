@@ -173,3 +173,17 @@ La routine `trig_013EKqLXukUsYvkUsjRqzHQc` (senza connettori) è stata cancellat
 Ripristino della vecchia routine (spenta dal 22/10), se serve ancora il colloquio Panapesca:
 - nome: "Controllo mail Panapesca"; cron `CRON_TZ=Europe/Rome 41 8-19/2 * * 1-6`;
 - prompt: "Max (rossati77@gmail.com) è in attesa di essere contattato da Panapesca per un colloquio: un amico che lavora lì lo sta segnalando. Controlla Gmail (connettore Gmail) per mail arrivate nelle ultime 24 ore. Cerca: "panapesca", "pana pesca", "panapesca.it", oltre a mail su colloquio/convocazione/selezione/risorse umane/HR arrivate da mittenti nuovi non legati ad alert automatici di LinkedIn o Indeed. Controlla anche spam se possibile. Se trovi una mail pertinente, leggila e riassumi in 3 righe: mittente, cosa chiedono, eventuali date/orari/numeri di telefono e se serve una risposta. Non rispondere né inviare nulla. Se non trovi nulla di nuovo, termina senza inviare notifiche. Scrivi in italiano, risposta breve e diretta."
+
+---
+
+## Aggiornamento 24/10/2026 (dopo): ogni scadenza ha il motivo
+
+Regola fissa voluta da Max, già inserita nel prompt della routine del presidente (`trig_01LARk4ojhHCcMnKV4jApawa`, punti 1e, 3 e 5), nel Doc 00 (sezione "Regola: ogni scadenza ha il suo motivo") e in `config/memoria-fatti` (fatto `scadenze-sempre-con-motivo`).
+
+Testo da copiare nel prompt di ogni agente che crea o aggiorna scadenze (Mail, Archivista, Agenda, Flussi, Borsa, Fisco, Legale, Nota spese):
+
+```
+REGOLA FISSA (Max, 24/10/2026): ogni scadenza e ogni rata attesa deve avere il campo "motivo": una frase che dice PER COSA è (esempio: "Saldo finale dei lavori del fotovoltaico a R3: bonifico parlante entro il 31/12 per la detrazione 50%. I soldi sono già in borsa."). La pagina lo mostra sotto il nome di ogni voce e, se manca, scrive "Motivo non indicato". Quando crei o aggiorni una scadenza scrivi sempre motivo (update su scadenze/<id> con if_version); per le rate di mutui e prestiti il motivo è nel campo nota del finanziamento. Se una scadenza non ha il motivo, completala ricavandolo dal nome, dalla mail o dal documento: mai inventare; se non lo sai, chiedilo a Max. Il testo di ogni contributo in una pratica inizia con una frase sola che riassume tutto: la pagina la mostra come riga chiusa.
+```
+
+Le skill degli agenti (agente-mail, agente-agenda, ecc.) leggono il Doc 00 all'inizio di ogni giro, quindi la regola arriva anche a loro; il testo sopra serve solo se si riscrive il prompt di una routine.
