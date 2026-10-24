@@ -115,3 +115,11 @@ Scrivi in "esecuzioni" il documento coordinatore-AAAA-MM-GG (agente "coordinator
 ---
 
 Nota: il Coordinatore cloud (`trig_01AuEnMNcD8gAyRwWiMMsPdu`) ha già il Prompt 3 e il nome "Coordinatore agenti (cloud)" ed è lasciato DISATTIVATO. Va attivato solo dopo aver spento il Coordinatore locale sul Mac, per non averne due.
+
+---
+
+## Aggiornamento 24/10/2026: cartelle operative
+
+- **Estratti banca** (Drive, `1gyizVynVSjd2qNryXkJ4BuctUpRYnZtk`): Max ci mette i file della banca. L'Agente Gestionale li importa ogni mattina senza duplicati, con totali di controllo, e li sposta in **Importati** (`1F5yeZCFH_BQSg_n9ggufmiWsCf4OPzwI`). Un file che non torna resta dov'è e il motivo diventa una domanda a Max.
+- **Backup Gestionale** (Drive, `1JMp0TXEILmlJjABKjA5z0Uqt6wpBIvle`): ogni domenica il Controllo Cervello (`trig_01LhzVzigMsebbEY2gseDhT2`, passo 7) salva un file JSON per collezione in una cartella AAAA-MM-GG; i mesi di movimenti chiusi una volta sola, al massimo 4 mesi vecchi per giro finché il backup è completo.
+- Regole scritte nel Doc 00 (sezione "Cartelle operative del Gestionale") e nel fatto `cartelle-operative` di `config/memoria-fatti`.
