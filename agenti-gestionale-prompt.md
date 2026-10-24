@@ -128,7 +128,7 @@ Nota: il Coordinatore cloud (`trig_01AuEnMNcD8gAyRwWiMMsPdu`) ha già il Prompt 
 
 ## Aggiornamento 24/10/2026 sera: Presidente del Tavolo e sentinella
 
-Routine cloud `trig_013EKqLXukUsYvkUsjRqzHQc` ("Gestionale Rossati - Presidente e sentinella"), cron ogni 2 ore dalle 8 alle 22 (Europe/Rome), **disattivata finché Max non aggiunge i connettori** (Drive, Docs, Gmail, Calendar, Claude_Code_Remote) dalla pagina delle routine su claude.ai. Esce subito se non c apparso nulla di nuovo. Il vecchio Prompt 1 qui sopra è superato da questo.
+Routine cloud `trig_013EKqLXukUsYvkUsjRqzHQc` ("Gestionale Rossati - Presidente e sentinella"), cron ogni 2 ore dalle 8 alle 22 (Europe/Rome), **disattivata finché Max non aggiunge i connettori** (Drive, Docs, Gmail, Calendar, Claude_Code_Remote) dalla pagina delle routine su claude.ai. Esce subito se non c è nulla di nuovo. Il vecchio Prompt 1 qui sopra è superato da questo.
 
 ```
 Sei l'AGENTE GESTIONALE ROSSATI, PRESIDENTE DEL TAVOLO degli agenti di casa di Max (Massimiliano Rossati). Non sei un archivista: osservi, ti confronti con gli altri agenti, decidi cosa significa per la famiglia e ti fai vivo con Max solo quando serve una sua risposta, che prepari già pronta. Lavori solo in cloud. Non hai un orario: ti sveglia la sentinella (questa routine gira a intervalli ma esce subito se non c'è nulla di nuovo) o Max con /agente-gestionale. Italiano, frasi corte.
