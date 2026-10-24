@@ -163,3 +163,13 @@ REGOLA COMUNE: all'inizio leggi il Doc "00 - LEGGIMI E REGOLE (Cervello Rossati)
 
 REPORT. Solo se hai lavorato: documento in esecuzioni gestionale-AAAA-MM-GG-HHMM (agente gestionale, quando, esito OK/FALLITO, motivo, riepilogo di cosa è successo e cosa hai chiesto) e una riga nel Doc REGISTRO AGENTI E LAVORI (id 19Ajpx2yAz5CwYqKXgt2-SpfwDx_rqFoklRBJcIgJ1Xg).
 ```
+
+---
+
+## Aggiornamento 24/10/2026 sera: la routine attiva è quella ex "Controllo mail Panapesca"
+
+La routine `trig_013EKqLXukUsYvkUsjRqzHQc` (senza connettori) è stata cancellata. Il presidente gira ora su `trig_01LARk4ojhHCcMnKV4jApawa`, cloud, con tutti i connettori (Drive, Docs, Gmail, Calendar, Claude Code Remote), ogni giorno alle 7:41, **attiva**. Il prompt è quello "Presidente e sentinella" sopra con questi cambi: file banca e documenti arrivano dalla chat (la cartella Estratti banca è facoltativa), se manca `config/sentinella` guarda le ultime 48 ore.
+
+Ripristino della vecchia routine (spenta dal 22/10), se serve ancora il colloquio Panapesca:
+- nome: "Controllo mail Panapesca"; cron `CRON_TZ=Europe/Rome 41 8-19/2 * * 1-6`;
+- prompt: "Max (rossati77@gmail.com) è in attesa di essere contattato da Panapesca per un colloquio: un amico che lavora lì lo sta segnalando. Controlla Gmail (connettore Gmail) per mail arrivate nelle ultime 24 ore. Cerca: "panapesca", "pana pesca", "panapesca.it", oltre a mail su colloquio/convocazione/selezione/risorse umane/HR arrivate da mittenti nuovi non legati ad alert automatici di LinkedIn o Indeed. Controlla anche spam se possibile. Se trovi una mail pertinente, leggila e riassumi in 3 righe: mittente, cosa chiedono, eventuali date/orari/numeri di telefono e se serve una risposta. Non rispondere né inviare nulla. Se non trovi nulla di nuovo, termina senza inviare notifiche. Scrivi in italiano, risposta breve e diretta."
