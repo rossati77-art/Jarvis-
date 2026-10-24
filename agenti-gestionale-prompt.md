@@ -187,3 +187,18 @@ REGOLA FISSA (Max, 24/10/2026): ogni scadenza e ogni rata attesa deve avere il c
 ```
 
 Le skill degli agenti (agente-mail, agente-agenda, ecc.) leggono il Doc 00 all'inizio di ogni giro, quindi la regola arriva anche a loro; il testo sopra serve solo se si riscrive il prompt di una routine.
+
+---
+
+## Aggiornamento 24/10/2026 (sera): agenti fermi resi automatici
+
+Cause trovate: (1) giri falliti per limite di token (15/10) mai rilanciati; (2) routine che richiedono il Chrome di Max (LinkedIn) o un computer; (3) esito FALLITO scritto anche quando si trovano solo anomalie (Controllo Cervello, Monitor); (4) nessuna pianificazione su quasi tutte le routine.
+
+Cosa è cambiato:
+- Presidente (`trig_01LARk4ojhHCcMnKV4jApawa`, ogni giorno 7:41): nuovo punto 1f «Guardiano agenti», che rilancia gli agenti falliti per token o errore (max 3 al giorno, una volta per agente) usando una mappa di id, senza list_triggers.
+- Controllo Cervello (`trig_01LhzVzigMsebbEY2gseDhT2`, domenica 8:07): l'esito dice se ha potuto fare i controlli, non se ha trovato problemi; rilancia da solo gli agenti falliti, chiude le righe di Bacheca superate; la MAPPA non allineata è «da guardare», non un errore.
+- Nota spese match (`trig_018z8i4pApc9PNDLY8Btyn8x`): pianificata ogni domenica 20:07; scrive IN_CORSO subito e chiude sempre l'esecuzione; «niente da fare» è OK.
+- LinkedIn e Indeed (`trig_016CmPERbiHQRySuhY6K9ghP`): legata al PC di Max (DESKTOP-7J5E367), il prompt si cambia solo con la sua approvazione dall'app desktop. Versione cloud pronta da applicare: Indeed con il connettore, LinkedIn con ricerca web, esito PARZIALE e non FALLITO se manca una fonte, giro quotidiano alle 7:15.
+- Monitor agenti: routine non trovata tra quelle elencate; i suoi compiti sono ora del Guardiano (presidente) e del Controllo Cervello.
+
+Mappa id per fire_trigger: mail trig_01E9oD4MkSqDmbs2NF18pxWW; archivista trig_01X11g9815wfYasNSUqeNPxK; agenda trig_014EnvcpnViwnSE6YFj4wxkp; legale trig_01HX8r3VwVM1EuHVsYG3ogXe; flussi trig_01XicRDdEQqjoyr7kSqpMo9S; borsa trig_01XStWbt4S7jrYhQZKMwVzaS; nota-spese-match trig_018z8i4pApc9PNDLY8Btyn8x; ingegnere trig_01RmEyiuC5kEf9HTi7a8Ne39; revisore trig_0187EZhUoMBePeToFS76ADCu; lavoro trig_01JzW2KebDr4kXkYhqdcHKt1; presidente trig_01LARk4ojhHCcMnKV4jApawa; controllo-cervello trig_01LhzVzigMsebbEY2gseDhT2.
