@@ -2011,6 +2011,10 @@ function docsToMap(s,m){s.docs.forEach(function(d){if(d.data().righe)m[d.id]=d.d
     if(d.id==="cassa")S.cassa=v; else if(d.id==="pensione")S.pens=v; else if(d.id==="piano-rate")S.pr=v; else if(d.id==="notaspese")S.nsReg=v; else if(d.id==="categorie")S.cat={regole:v.regole||[],override:v.override||{},agg:v.agg}; else if(d.id==="nsmatch")S.nsm={abb:v.abb||[],escl:v.escl||[]}; else if(d.id==="direzione")S.dir=v; else if(d.id==="memoria-fatti")S.mem=v;});});
   render();
 })();
+document.addEventListener("click",function(e){if(!e.target.closest("[data-expdati]"))return;
+  var txt=JSON.stringify(RAW), nm="gestionale-dati.json";
+  claude.use("downloads").then(function(d){ if(d)return d.save({filename:nm,data:txt}); var a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([txt],{type:"application/json"})); a.download=nm; a.click() }).then(function(){toast("Dati esportati")}).catch(function(){toast("Esportazione annullata")})});
+(function(){var d=document.createElement("div"); d.style.cssText="text-align:center;padding:28px 16px 90px"; d.innerHTML='<button type="button" class="btn alt small" data-expdati="1">Esporta tutti i dati</button><div class="sub" style="margin-top:6px">Un solo file con tutto l’archivio, per fare una copia di sicurezza o ricrearlo altrove.</div>'; document.body.appendChild(d)})();
 </script>
 
 </body></html>

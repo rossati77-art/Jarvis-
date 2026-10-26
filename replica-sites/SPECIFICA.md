@@ -2,11 +2,8 @@
 
 Da dare a ChatGPT insieme al file `gestionale-sorgente.html` (la pagina completa, ~220 KB, è la fonte di verità: ogni calcolo, testo e colore è lì).
 
-## 0. Cosa è replicabile e cosa no
-Google Sites NON esegue JavaScript proprio: accetta solo "Incorpora → Codice incorporato" (iframe HTML/CSS/JS statico, niente database condiviso, niente login, niente chiamate a Claude).
-- **Replicabile in Sites:** tutta l'interfaccia, i calcoli (saldo, 90 giorni, palla di neve, mese), le schede, il drill-down, le ricerche, il personaggio (senza intelligenza). Dati o incollati nel codice (JSON) o letti da un Google Sheet pubblicato (CSV).
-- **NON replicabile in Sites:** salvataggio condiviso in tempo reale (db), il personaggio che parla con Claude e scrive, gli agenti automatici (Presidente, Archivista, ecc.), i download automatici. Alternative: Google Sheet + Apps Script (web app) come "database" e ChatGPT/Gemini al posto di Claude.
-Consiglio: se vuoi la copia identica e funzionante, usare Apps Script web app o hosting statico + Firebase, non Sites puro.
+## 0. Come si ricrea davvero (operativo)
+Google Sites puro non basta (niente database, niente chiamate a un'IA). La soluzione completa è: **Google Apps Script (web app) + Google Sheet come database + API OpenAI per il personaggio e gli agenti**, e poi la web app si **incorpora in Google Sites** (Inserisci → Incorpora → Per URL). Tutto il codice è già pronto in `apps-script/` e i passi sono in `GUIDA-INSTALLAZIONE.md`. Il resto di questo file descrive cosa fa l'app, per capirla o rifarla da zero.
 
 ## 1. Stile (tema scuro, arancio)
 Font titoli Archivo, voce Source Serif 4. Colori: sfondo #0D1318, superficie #131B22, testo #E7ECEA, grigio #8B979F, linee #232E36, accento arancio #E3834F (solido #C4542A), allarme #E08276, ok #4FBCA1, attenzione #D6A63F. Card in vetro (sfondo rgba(32,38,45,.58), bordo rgba(255,255,255,.07)). Mobile-first, 16px di margine, nessuno scroll orizzontale. Importi in formato italiano `1.234,56 €`, date `15 dic 2026`.
